@@ -1,106 +1,147 @@
-<md-toolbar class="md-primary md-hue-2" layout="row">
-    <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-            <md-icon hide-gt-sm ng-click="vm.toggleList()" md-font-icon="fa-bars" class="fa fa-lg" alt="magic wand"></md-icon>
-        </md-button>
-        <h2>
-            <span>Encuesta</span>
-        </h2>
-        <span flex></span>
-    </div>
-</md-toolbar>
+<header>
+  
+  <div class="navbar-fixed hide-on-large-only">
+    <nav>
+      <div class="nav-wrapper">
+        <ul class="right">
+          <li class="hide-on-small-only">
+            <a href="">
+              <i class="material-icons">search</i>
+            </a>
+          </li>
+          <li class="hide-on-small-only">
+            <a href="">
+              <i class="material-icons">perm_identity</i>
+            </a>
+          </li>
+          <li class="toogle-side-nav">
+            <a href="" data-activates="slide-menu" class="button-collapse">
+              <i class="material-icons">menu</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
-<div flex layout="row">
-    <!-- Container #3 -->
+  <div id="side-menu" class="side-nav fixed" data-simplebar-direction="vertical" style="width:240px;">
+  <ul class="side-nav-main">
+    <li class="logo hide-on-med-and-down">
+      
+    </li>
+    <li class="side-nav-inline hide-on-med-only">
+      <a href="" class="inline waves-effect">
+        <i class="mdi-action-exit-to-app"></i>
+      </a>
+    </li>
+    <li>
+      <a href="" class="waves-effect" ui-sref="principal">
+        <i class="material-icons left">home</i>
+        <span class="thin">Principal</span>
+      </a>
+    </li>
+    <li>
+      <a href="" class="waves-effect">
+        <i class="material-icons left"></i>
+        <span class="thin">Encuestas</span>
+      </a>
+    </li>
+  </ul>
+    
+  </div>
+</header>
+<main >
+  <div class="container">
+    <h1 class="thin">Encuestas</h1>
+    <div id="encuesta">
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <nav class="grey darken-3">
+            <div class="nav-wrapper">
+              
+              <ul class="right hide-on-med-and-down">
+                <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+                <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+                <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
 
-    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="vm.toggleList()" class="md-whiteframe-z2">
-
-        <div ng-include="'js/app/administrador/menu.html'"></div>
-    </md-sidenav>
-
-    <!-- Container #4 -->
-    <md-content  flex layout-padding layout="row" layout-wrap layout-align="center center">
-
-
-
-        <md-card ng-repeat="encuesta in [1,2,3,4,5]"  flex-sm="100" flex="48" flex-xs="100" flex-sm="100" flex-md="48"  layout="" md-theme="default" md-theme-watch>
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Encuesta 1</span>
-                    <span class="md-subhead">Subt</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content layout="row" layout-align="space-between">
-                <div ">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta veniam nulla commodi similique quidem modi aut nobis cumque
-                        unde cum. Incidunt, ullam saepe odit! Atque aliquam, sed in. In, illum.
-                    </div>
-                    <md-card-actions layout="column ">
-
-                        <md-menu>
-                            <md-button ng-click="vm.abrirMenu($mdOpenMenu, $event) " class="md-icon-button
-                    " aria-label="Settings ">
-                                <md-icon md-font-icon="fa-bars " class="fa fa-lg "></md-icon>
-
-                            </md-button>
-                            <md-menu-content width="number ">
-                                <md-menu-item ui-sref="encuesta-categoria ">
-                                    <md-button>
-                                        <md-icon md-font-icon="fa-wpforms " class="fa fa-lg "></md-icon>
-                                        Categorias
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button>
-                                        <md-icon md-font-icon="fa-question-circle-o " class="fa fa-lg "></md-icon>
-                                        Preguntas
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button>
-                                        <md-icon md-font-icon="fa-bar-chart " class="fa fa-lg "></md-icon>
-                                        Estadísticas
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-
-                        <md-button class="md-icon-button " ng-click="vm.abrirCompartir() " aria-label="Share ">
-                            <md-icon md-font-icon="fa-share " class="fa fa-lg "></md-icon>
-                        </md-button>
-                        <md-button class="md-icon-button " ng-click="vm.abrirConfirmacion($event) " aria-label="Delete ">
-                            <md-icon md-font-icon="fa-trash-o " class="fa fa-lg "></md-icon>
-                        </md-button>
-                    </md-card-actions>
-                </md-card-content>
-            </md-card>
+      <div class="row">
+        <div class="col s12 m6 l6">
+          <div ng-repeat="i in [1,2,3,4,5]">
             
-        
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title thin">Titulo</span>
+              <div class="encuesta-encuesta-card">
+                <div class="row">
+                  <div class="col s8 m8 l8">
+                    <p class="thin">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem fugit, qui architecto.
+                    </p>
+                  </div>
+                  <div class="col s4 m4 l4">
+                    <div class="encuesta-encuesta-card-iconos">
+                      <ul class="right">
+                        <li>
+                          <i class="material-icons">more_vert</i>
+                        </li>
+                        <li>
+                          <i class="material-icons">link</i>
+                        </li>
+                        <li>
+                          <i class="material-icons">help_outline</i>
+                        </li>
+                        <li>
+                          <i class="material-icons">show_chart</i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="card-action">
+              <span class="thin">23 de Enero del 2015</span>
+                   
+            </div>
+          </div>
+
+        </div>
+        <div class="col s12 m6 l6">
+          
+        </div>
+      </div>
 
 
+       
 
-    </md-content>
-    <div style="position:absolute;right:5px;bottom:10px;" layout-align="end end">
-        <md-fab-speed-dial md-open="false" md-direction="up" class="md-scale">
-            <md-fab-trigger>
-                <md-button aria-label="menu" class="md-fab md-accent">
-                    <md-icon md-font-icon="fa-plus" class="fa fa-lg"></md-icon>
-                </md-button>
-            </md-fab-trigger>
-
-            <md-fab-actions>
-                <md-button aria-label="Crear" ng-click="vm.abrirDialog($event)" class="md-fab md-raised md-mini">
-                    <md-icon md-font-icon="fa-plus" class="fa fa-lg"></md-icon>
-                    <md-tooltip md-direction="left" md-visible="false" md-autohide="true">
-                        Crear encuesta
-                    </md-tooltip>
-                </md-button>
-
-            </md-fab-actions>
-        </md-fab-speed-dial>
     </div>
 
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>
+    
+    
+  </div>
 
+  
+</main>
 
-
-</div>
+<footer>
+  
+</footer>

@@ -19,16 +19,16 @@
                 controller:'PrincipalController',
                 controllerAs:'vm'
             }
-        },/*
+        },
         {
             state:'encuesta',
             config:{
                 url:'/encuesta',
                 templateUrl:'js/app/administrador/encuesta/encuesta.html',
-               // controller:'EncuestaController',
-                //controllerAs:'vm'
+                controller:'EncuestaController',
+                controllerAs:'vm'
             }
-        },
+        }/*,
         {
             state:'encuesta-categoria',
             config:{
