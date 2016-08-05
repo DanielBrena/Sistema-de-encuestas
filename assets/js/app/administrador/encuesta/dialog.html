@@ -1,0 +1,63 @@
+<md-dialog aria-label="Crear" class="md-inline-form">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Crear encuesta</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.cerrarDialog()">
+                <md-icon md-font-icon="fa-times" class="fa fa-lg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content layout-xs="row" layout-padding>
+
+        <form name="form-encuesta">
+
+
+            <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label for="nombre">Nombre</label>
+                    <input ng-model="vm.encuesta.nombre">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label for="descripcion">Descripción</label>
+                    <textarea ng-model="vm.encuesta.descripcion" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
+
+            </div>
+
+            <div layout-gt-xs="row">
+                <div flex>
+                    <h4>Inicio de la encuesta</h4>
+                    <md-datepicker ng-model="vm.encuesta.fechaInicio" md-placeholder="Fecha inicio" md-open-on-focus></md-datepicker>
+                </div>
+
+                <div flex>
+                    <h4>Termino de la encuesta</h4>
+                    <md-datepicker ng-model="vm.encuesta.fechaFinal" md-placeholder="Fecha final" md-open-on-focus></md-datepicker>
+                </div>
+
+            </div>
+
+
+
+
+            <md-switch ng-model="vm.encuesta.disponible" aria-label="Encuesta disponible">
+                Encuesta disponible
+            </md-switch>
+
+
+
+
+
+        </form>
+
+
+    </md-dialog-content>
+
+    <md-dialog-actions>
+
+        <md-button ng-click="vm.cerrarDialog()" class="md-raised">Cancelar</md-button>
+        <md-button ng-click="vm.crear(vm.encuesta)" class="md-raised md-primary">Crear encuesta</md-button>
+    </md-dialog-actions>
+</md-dialog>

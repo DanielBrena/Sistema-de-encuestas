@@ -1,0 +1,81 @@
+<md-toolbar class="md-primary md-hue-2" layout="row">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+            <md-icon hide-gt-sm ng-click="vm.toggleList()" md-font-icon="fa-bars" class="fa fa-lg" alt="magic wand"></md-icon>
+        </md-button>
+        <h2>
+            <span>Encuesta</span>
+        </h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+<div flex layout="row">
+    <!-- Container #3 -->
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="vm.toggleList()" class="md-whiteframe-z2">
+
+     <div  ng-include="'js/app/administrador/menu.html'"></div>
+     </md-sidenav>
+    <!-- Container #4 -->
+    <md-content flex id="content" layout-padding>
+        <div layout layout-gt-sm="row" layout-lg="row" layout="column" style="padding-bottom: 10px;">
+            <div flex="42" flex="42" flex-xs="100" flex md-whiteframe="1">
+                <md-toolbar class="md-theme-light">
+                    <h2 class="md-toolbar-tools">
+                        <span>Lista de categorias</span>
+                    </h2>
+                </md-toolbar>
+                <md-content>
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="categoria in vm.categorias">
+                            <div class="md-list-item-text">
+                                <h3>{{categoria.nombre}}</h3>
+                                <p>{{categoria.descripcion}}</p>
+                            </div>
+
+
+
+                            <md-button ng-click="vm.obtener(categoria.id)" class="md-secondary">Editar</md-button>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </div>
+            <div flex="5" flex>
+            </div>
+            <div flex="42" flex flex-xs="100" md-whiteframe="1">
+                <md-toolbar class="md-theme-light">
+                    <h2 class="md-toolbar-tools">
+                        <span>{{vm.categoria.id != null ? 'Actualizar categoría' : 'Crear categoría'}}</span>
+                    </h2>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label for="nombre">Nombre</label>
+                        <input ng-model="vm.categoria.nombre">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label for="descripcion">Descripción</label>
+                        <textarea ng-model="vm.categoria.descripcion" md-maxlength="100" rows="5" md-select-on-focus></textarea>
+                    </md-input-container>
+
+                    <md-button class="md-raised" ng-click="vm.categoria = {}">Cancelar</md-button>
+
+                    <md-button ng-hide="vm.categoria.id != null" class="md-raised md-primary" ng-click="vm.crear(vm.categoria)">Crear</md-button>
+                     <md-button ng-show="vm.categoria.id != null" class="md-raised md-warn" ng-click="vm.eliminar(vm.categoria.id,$event)" >Eliminar</md-button>
+                    <md-button ng-show="vm.categoria.id != null" class="md-raised md-primary" ng-click="vm.actualizar(vm.categoria)">Actualizar</md-button>
+                </md-content>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </md-content>
+
+
+</div>
