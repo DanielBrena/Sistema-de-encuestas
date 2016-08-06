@@ -28,6 +28,15 @@
                 controller:'EncuestaController',
                 controllerAs:'vm'
             }
+        },
+        {
+          state:'pregunta',
+          config:{
+            url:'/pregunta',
+            templateUrl:'js/app/administrador/pregunta/pregunta.html',
+            controller:'PreguntaController',
+            controllerAs:'vm'
+          }
         }/*,
         {
             state:'encuesta-categoria',

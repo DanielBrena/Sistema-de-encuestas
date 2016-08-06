@@ -8,3 +8,16 @@ main {
     	padding: 3% 0 0 0; 
 	} 
 }
+
+.pointer{
+	cursor: pointer;
+}
+
+.encuesta-collection{
+	overflow: visible;
+}
+.dropdown-width{
+	width: auto !important;
+}
+
+.modalOrden { width: 40% !important ; max-height: 60% !important ; overflow-y: hidden !important ;}
