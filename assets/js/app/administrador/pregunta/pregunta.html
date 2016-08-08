@@ -50,7 +50,7 @@
     
   </div>
 </header>
-<main >
+<main ng-init="vm.cargarElementos()">
   <div class="container">
     <h1 class="thin grey-text text-darken-3">Preguntas</h1>
 
@@ -85,7 +85,7 @@
               <ul class="collection encuesta-collection">
         
 
-        <li class="collection-item" ng-repeat="i in [1,2,3]">
+        <li class="collection-item" ng-repeat="i in [1,2,3,4,5,6]">
           <div class="condensed">Alvin<a  class="secondary-content"><i class="dropdown-button material-icons" data-beloworigin="false" data-activates='dropdown-{{i}}'>more_vert</i></a></div>
           <span class="thin">15 preguntas</span>
 

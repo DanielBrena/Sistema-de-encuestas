@@ -21,3 +21,5 @@ main {
 }
 
 .modalOrden { width: 40% !important ; max-height: 60% !important ; overflow-y: hidden !important ;}
+
+.modalEncuesta { height: 80% !important; max-height: 80% !important ; overflow-y: hidden !important ;}
