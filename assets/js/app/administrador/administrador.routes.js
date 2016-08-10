@@ -32,7 +32,7 @@
         {
           state:'pregunta',
           config:{
-            url:'/pregunta',
+            url:'/pregunta/:id',
             templateUrl:'js/app/administrador/pregunta/pregunta.html',
             controller:'PreguntaController',
             controllerAs:'vm'

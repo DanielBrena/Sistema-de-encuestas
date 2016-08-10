@@ -35,14 +35,14 @@
       </a>
     </li>
     <li>
-      <a href="" class="waves-effect" ui-sref="principal">
+      <a href="" class="waves-effect" ui-sref="administrador">
         <i class="material-icons left">home</i>
         <span class="thin">Principal</span>
       </a>
     </li>
     <li>
-      <a href="" class="waves-effect">
-        <i class="material-icons left"></i>
+       <a href="" class="waves-effect" ui-sref="encuesta">
+        <i class="material-icons left" >content_paste</i>
         <span class="thin">Encuestas</span>
       </a>
     </li>
@@ -99,14 +99,17 @@
                           <i class="material-icons pointer tooltipped " data-position="right" data-delay="50" data-tooltip="Compartir encuesta">link</i>
                         </li>
                         <li>
-                          <i class="material-icons pointer tooltipped"  ng-click="vm.btnAgregarPreguntas()" data-position="right" data-delay="50" data-tooltip="Agregar preguntas">help_outline</i>
+                          <i class="material-icons pointer tooltipped"  ng-click="vm.btnAgregarPreguntas(e.id)" data-position="right" data-delay="50" data-tooltip="Agregar preguntas">help_outline</i>
                         </li>
                         <li>
                           <i class="material-icons pointer tooltipped" data-position="right" data-delay="50" data-tooltip="Mostrar estadísticas">show_chart</i>
                         </li>
                       </ul>
                         
-                      <!-- dropdown-->
+                      
+
+                    </div>
+                    <!-- dropdown-->
                       <ul id='dropdown-{{e.id}}' class='dropdown-content dropdown-width'>
                         <li><a ng-click="vm.btnModalRespuestas(i)">Publicar encuesta</a></li>
                         </li>
@@ -114,8 +117,6 @@
                         <li><a ng-click="vm.btnModalEncuesta(e)">Editar</a></li>
                         <li><a href="#!">Eliminar</a></li>
                       </ul>
-
-                    </div>
                   </div>
                 </div>
               </div>

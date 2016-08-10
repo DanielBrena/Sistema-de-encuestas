@@ -3,6 +3,7 @@
     angular.module('app.core',[
         'ui.router',
         'blocks.router',
-        'ui.materialize'
+        'ui.materialize',
+        'underscore'
         ]);
 })();

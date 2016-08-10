@@ -15,6 +15,9 @@ module.exports = {
     },
     descripcion:{
       type:'string'
+    },
+    encuesta:{
+      model:'encuestas'
     }
   }
 };

@@ -34,6 +34,18 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+  'GET /preguntas/encuesta/:id':{
+    controller:'PreguntasController',
+    action:'getEncuesta'
+  },
+  'GET /categorias/encuesta/:id':{
+    controller:'CategoriasController',
+    action:'getEncuesta'
+  },
+  'GET /respuestas/pregunta/:id':{
+    controller:'RespuestasController',
+    action:'getPregunta'
   }
 
   /***************************************************************************

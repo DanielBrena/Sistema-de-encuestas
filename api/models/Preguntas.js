@@ -22,6 +22,10 @@ module.exports = {
       type:'string',
       enum:['abierta','cerrada']
     },
+    posicion:{
+      type:'integer',
+      defaultsTo:0
+    },
     respuestas:{
       collection:'respuestas',
       via:'pregunta'

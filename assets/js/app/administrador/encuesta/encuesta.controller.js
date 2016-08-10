@@ -7,12 +7,16 @@
 	function EncuestaController($scope,$state,Encuesta){
 		var vm = this;
 		vm.encuestasAux = [];
+		
 
 		vm.btnAgregarPreguntas = agregarPreguntas;
 		vm.encuesta = {};
 
 		vm.btnModalEncuesta = mostrarEncuesta;
 		vm.btnCrearEncuesta = crearEncuesta;
+		//vm.btnRuta = rutaPreguntas;
+
+
 
 
 		$scope.$on('$viewContentLoaded', 
@@ -40,6 +44,10 @@
 
 	    }
 
+	    function rutas(id){
+	    	$state.go('pregunta',{id:id});
+	    }
+
 	    function mostrarEncuesta(encuesta){
 	    	if(typeof encuesta === 'object'){
 	    		fecha();
@@ -55,15 +63,6 @@
 	    //Elementos jQuery
 		function cargarElementos(){
 			$(document).ready(function(){
-				$('.dropdown-button').dropdown({
-				   	inDuration: 300,
-				    outDuration: 225,
-				    gutter: 0, 
-				    belowOrigin: true, 
-				    alignment: 'bottom' 
-				});
-				 
-				$('.tooltipped').tooltip({delay: 50});
 
 				io.socket.get('/encuestas', function(resData, jwres) {
 					console.info('Datos en tiempo real');
@@ -71,9 +70,17 @@
 					vm.encuestasAux = resData;
 					vm.encuestas = arreglo(vm.encuestasAux);
 					$scope.$apply(); 
-				});
 
-				//cargarEncuestas();
+					$('.dropdown-button').dropdown({
+					   	inDuration: 300,
+					    outDuration: 225,
+					    gutter: 0, 
+					    belowOrigin: true, 
+					    alignment: 'bottom' 
+					});
+				});
+				 
+				$('.tooltipped').tooltip({delay: 50});
 
 				io.socket.on('encuestas', function(event){
 					vm.encuestasAux.push(event.data);
@@ -83,14 +90,20 @@
 
 				});
 
+				
+
+				//cargarEncuestas();
+
+				
+
 			});
 			
 		}
 
 
-		function agregarPreguntas(){
+		function agregarPreguntas(id){
 			$('.tooltipped').tooltip('remove');
-			$state.go('pregunta');
+			$state.go('pregunta',{id:id});
 		}
 
 	    function arreglo(data){

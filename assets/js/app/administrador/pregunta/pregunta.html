@@ -35,14 +35,14 @@
       </a>
     </li>
     <li>
-      <a href="" class="waves-effect" ui-sref="principal">
+      <a href="" class="waves-effect" ui-sref="administrador">
         <i class="material-icons left">home</i>
         <span class="thin">Principal</span>
       </a>
     </li>
     <li>
-      <a href="" class="waves-effect">
-        <i class="material-icons left"></i>
+      <a href="" class="waves-effect" ui-sref="encuesta">
+        <i class="material-icons left" >content_paste</i>
         <span class="thin">Encuestas</span>
       </a>
     </li>
@@ -69,40 +69,47 @@
               </div>
             </nav>
 
-            <ul class="tabs">
-              <li class="tab col s3" ng-repeat="i in [1,2,3,4]">
-                <a class="active" ng-href="#test{{i}}" >Test {{i}}</a>
-                </li>
+            <ul class="tabs" >
+                <li  class="tab col s3">
+                <a class="active" ng-href="#tab-todos" >Todos</a>
+              </li> 
+
+              <!-- <li ng-show="vm.categorias.length > 0" class="tab col s3" ng-repeat="categoria in vm.categorias">
+                <a class="active" ng-href="#tab-{{categoria.id}}" >{{categoria.nombre}}</a>
+              </li> -->
             </ul>
 
           </div>
         </div>
         <div class="col s12 m12 l12">
-          <div class="card-panel no-padding">
-            <div id="test1">
-             
+          <h3 ng-show="vm.preguntas.length == 0" class="thin">No hay preguntas</h3>
 
-              <ul class="collection encuesta-collection">
+          <div class="card-panel no-padding" ng-show="vm.preguntas.length > 0">
+            <div id="tab-todos"  >
+
+                
+              
+
+              <ul  class="collection encuesta-collection">
         
 
-        <li class="collection-item" ng-repeat="i in [1,2,3,4,5,6]">
-          <div class="condensed">Alvin<a  class="secondary-content"><i class="dropdown-button material-icons" data-beloworigin="false" data-activates='dropdown-{{i}}'>more_vert</i></a></div>
-          <span class="thin">15 preguntas</span>
+                <li class="collection-item" ng-repeat="pregunta in vm.preguntas track by $index">
+                  <div ><span class="condensed"># {{pregunta.posicion}} | </span><span class="light">{{pregunta.texto}}</span><a  class="secondary-content"><i class="dropdown-button material-icons pointer" data-beloworigin="false" data-activates='dropdown-{{pregunta.id}}'>more_vert</i></a></div>
+                  <span class="thin">{{pregunta.respuestas.length}} respuestas</span>
 
-          <ul id='dropdown-{{i}}' class='dropdown-content dropdown-width'>
-            <li><a ng-click="vm.btnModalRespuestas(i)">Respuestas</a></li>
-            <li><a ng-click="vm.btnModalOrden()">Posición</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Editar</a></li>
-            <li><a href="#!">Eliminar</a></li>
-          </ul>
-        </li>
-       
-      </ul>
+                  <ul id='dropdown-{{pregunta.id}}' class='dropdown-content dropdown-width'>
+                    <li><a ng-click="vm.btnModalRespuestas(pregunta)">Respuestas</a></li>
+                    <li><a ng-click="vm.btnModalOrden(pregunta)">Posición</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="vm.btnMostrarPregunta(pregunta)">Editar</a></li>
+                    <li><a href="#!">Eliminar</a></li>
+                  </ul>
+                </li>
+               
+              </ul>
             </div>
-            <div id="test2" class="col s12">Test 2</div>
-            <div id="test3" class="col s12">Test 3</div>
-            <div id="test4" class="col s12">Test 4</div>
+           <!--  <div id="#tab-{{categoria.id}}" ng-repeat="categoria in vm.categorias" class="col s12">Test 2</div> -->
+           
             
           </div>
         </div>
@@ -117,14 +124,12 @@
     </div>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-      <a class="btn-floating btn-large red">
-        <i class="large material-icons">mode_edit</i>
+      <a class="btn-floating btn-large grey darken-3">
+        <i class="large material-icons ">edit</i>
       </a>
       <ul>
-        <li><a class="btn-floating red modal-trigger" href="#modalPregunta"><i class="material-icons">insert_chart</i></a></li>
-        <li><a class="btn-floating yellow darken-1 modal-trigger" href="#modalCategoria"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        <li><a class="btn-floating  grey darken-1" ng-click="vm.btnMostrarPregunta({})"><i class="material-icons ">insert_chart</i></a></li>
+        <li><a class="btn-floating grey darken-2 " ng-click="vm.btnMostrarCategoria()"><i class="material-icons ">format_quote</i></a></li>
       </ul>
     </div>
     
@@ -135,33 +140,33 @@
 
   <!--Modal pregunta -->
 
-  <div id="modalPregunta" class="modal modal-fixed-footer">
+  <div id="modalPregunta" class="modal modal-fixed-footer" ng-form="formPregunta">
     <div class="modal-content">
-      <h5 class="condensed grey-text text-darken-3">Crear pregunta</h5>
+      <h5 class="condensed grey-text text-darken-3">{{vm.pregunta.id ? 'Actualizar pregunta' :'Crear pregunta'}}</h5>
       <div class="row">
         <div class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
-              <label class="thin" for="textarea1">Escribe tu pregunta</label>
+              <textarea id="pregunta_texto" ng-model="vm.pregunta.texto" required class="materialize-textarea"></textarea>
+              <label class="thin" for="pregunta_texto">Escribe tu pregunta</label>
             </div>
 
             <div class="col s12">
               <label class="thin">Selecciona la categoría</label>
-              <select class="browser-default">
+              <select class="browser-default" required ng-model="vm.pregunta.categoria" ng-options="categoria.id as categoria.nombre for categoria in vm.categorias">
                 <option class="thin" value="" disabled selected>Categorias</option>
-                <option class="thin" value="1">Option 1</option>
-                <option class="thin" value="2">Option 2</option>
-                <option class="thin" value="3">Option 3</option>
+               
               </select>
             </div>
 
-            <div class="input-field col s12">
-                <input name="group1" type="radio" id="tipoAbierta" />
-                <label class="thin" for="tipoAbierta">Pregunta abierta</label>
+            <div class="input-field col s12" ng-init="vm.pregunta.tipo = 'cerrada'">
+              <input name="group1" value="cerrada"   ng-model="vm.pregunta.tipo" type="radio"  id="tipoCerrada" />
+              <label class="thin" for="tipoCerrada">Pregunta cerrada</label>
 
-                <input name="group1" type="radio" id="tipoCerrada" />
-                  <label class="thin" for="tipoCerrada">Pregunta cerrada</label>
+              <input name="group1" value="abierta"  ng-model="vm.pregunta.tipo" type="radio" id="tipoAbierta" />
+              <label class="thin" for="tipoAbierta">Pregunta abierta</label>
+
+                
             </div>
 
           </div>
@@ -169,41 +174,38 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a class="waves-effect waves-light btn grey darken-3"><i class="material-icons right ">send</i>Crear pregunta</a>
+      <a class="waves-effect waves-light btn grey darken-3" ng-disabled="formPregunta.$invalid" ng-click="vm.btnCrearPregunta(vm.pregunta)"><i class="material-icons right ">send</i>Crear pregunta</a>
 
       <a style="margin-right:10px" class="modal-action modal-close waves-effect waves-light btn white grey-text text-darken-3"><i class="material-icons right ">close</i>Cancelar</a>
 
     </div>
   </div>
 
-  <!--Modal pregunta -->
+  <!--Modal categoria -->
 
-  <div id="modalCategoria" class="modal modal-fixed-footer">
+  <div id="modalCategoria" class="modal modal-fixed-footer" ng-form="formCategoria">
     <div class="modal-content">
-      <h5 class="condensed grey-text text-darken-3">Crear categoría</h5>
+      <h5 class="condensed grey-text text-darken-3">{{vm.categoria.id ? 'Actualizar categoría' :'Crear categoría'}}</h5>
       <div class="row">
         <div class="col s12">
           <div class="row">
+
             <div class="input-field col s12">
-              <input  id="first_name" type="text" class="validate">
-              <label class="thin" for="first_name">Nombre de la categoría</label>
+              <input  ng-model="vm.categoria.nombre" required id="nombre_categoria" type="text" class="validate">
+              <label class="thin" for="nombre_categoria">Nombre de la categoría</label>
             </div>
 
             <div class="input-field col s12">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
-              <label class="thin" for="textarea1">Escribe la descripción de la categoría</label>
+              <textarea ng-model="vm.categoria.descripcion" id="descripcion_categoria" class="materialize-textarea"></textarea>
+              <label class="thin" for="descripcion_categoria">Escribe la descripción de la categoría</label>
             </div>
-
-            
-
-            
 
           </div>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <a class="waves-effect waves-light btn grey darken-3"><i class="material-icons right ">send</i>Crear categoría</a>
+      <a class="waves-effect waves-light btn grey darken-3" ng-click="vm.btnCrearCategoria(vm.categoria)" ng-disabled="formCategoria.$invalid"><i class="material-icons right "  >send</i>Crear categoría</a>
 
       <a style="margin-right:10px" class="modal-action modal-close waves-effect waves-light btn white grey-text text-darken-3"><i class="material-icons right ">close</i>Cancelar</a>
 
@@ -212,7 +214,7 @@
 
   <!--Modal respuestas -->
 
-  <div id="modalRespuesta" class="modal modal-fixed-footer">
+  <div id="modalRespuesta" class="modal modal-fixed-footer" ng-form="formRespuesta">
     <div class="modal-content">
 
       <h5 class="condensed grey-text text-darken-3 ">Crear respuestas</h5>
@@ -220,28 +222,25 @@
         <div class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input  id="first_name" type="text" class="validate">
-              <label class="thin" for="first_name">Respuesta</label>
+              <input  id="texto_respuesta" type="text" ng-model="vm.respuesta.texto"  required class="validate">
+              <label class="thin" for="texto_respuesta">Respuesta</label>
             </div>
 
             <div class="col s12">
-              <a class="waves-effect waves-light btn grey darken-3 col s12"><i class="material-icons right ">send</i>Agregar respuesta</a>
+              <a ng-disabled="formRespuesta.$invalid" ng-click="vm.btnCrearRespuesta(vm.respuesta)" class="waves-effect waves-light btn grey darken-3 col s12"><i class="material-icons right ">send</i>Agregar respuesta</a>
             </div>
             
+
             
-            <div class="col s12">
-               <ul class="collection with-header" >
-              <li class="collection-header"><h5>Respuestas</h5></li>
-              <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">delete</i></a></div></li>
-            </ul>
+            <div  class="col s12">
+
+              <h5 ng-show="vm.respuestas.length == 0" class="thin">No hay respuestas</h5>
+              <ul class="collection with-header" ng-show="vm.respuestas.length > 0">
+                  <li class="collection-header"><h5>Respuestas</h5></li>
+                  <li class="collection-item" ng-repeat="respuesta in vm.respuestas"><div class="thin">{{respuesta.texto}}<a  class="secondary-content"><i class="material-icons">edit</i><i class="material-icons">delete</i></a></div></li>
+              </ul>
             </div>
 
-            
-            
-
-            
-
-            
 
           </div>
           <div class="row">
@@ -256,14 +255,14 @@
     <div class="modal-footer">
       
 
-      <a style="margin-right:10px" class="modal-action modal-close waves-effect waves-light btn white grey-text text-darken-3"><i class="material-icons right ">close</i>Cancelar</a>
+      <a style="margin-right:10px" ng-click="vm.btnCerrarRespuestas()" class="waves-effect waves-light btn white grey-text text-darken-3"><i class="material-icons right ">close</i>Cancelar</a>
 
     </div>
   </div>
 
   <!--Modal orden -->
 
-  <div id="modalOrden" class="modal modal-fixed-footer modalOrden">
+  <div id="modalOrden" class="modal modal-fixed-footer modalOrden" ng-form="formOrden">
     <div class="modal-content">
 
       <h5 class="condensed grey-text text-darken-3 ">Posición de pregunta</h5>
@@ -271,8 +270,8 @@
         <div class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input  id="first_name" type="number"  value="0" min="0" class="validate">
-              <label class="thin" for="first_name">Posición</label>
+              <input  id="posicion_pregunta" ng-model="vm.pregunta.posicion" required type="number"  value="0" min="0" class="validate">
+              <label class="thin" for="posicion_pregunta">Posición</label>
             </div>
 
           </div>
@@ -286,7 +285,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a class="waves-effect waves-light btn grey darken-3"><i class="material-icons right ">send</i>Guardar posición</a>
+      <a ng-disabled="formOrden.$invalid" ng-click="vm.btnActualizarOrden(vm.pregunta)" class="waves-effect waves-light btn grey darken-3"><i class="material-icons right ">send</i>Guardar posición</a>
 
       <a style="margin-right:10px" class="modal-action modal-close waves-effect waves-light btn white grey-text text-darken-3"><i class="material-icons right ">close</i>Cancelar</a>
 
