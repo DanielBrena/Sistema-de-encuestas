@@ -78,15 +78,18 @@
 					    belowOrigin: true, 
 					    alignment: 'bottom' 
 					});
+
+					 $('.tooltipped').tooltip({delay: 50});
 				});
 				 
-				$('.tooltipped').tooltip({delay: 50});
+				
 
 				io.socket.on('encuestas', function(event){
 					vm.encuestasAux.push(event.data);
 					vm.encuestas = arreglo(vm.encuestasAux);
 					$scope.$apply(); 
 					
+					$('.tooltipped').tooltip({delay: 50});
 
 				});
 
